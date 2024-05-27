@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tradutor Multilíngue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    textarea {
+      width: 300px;
+      height: 100px;
+      font-size: 16px;
+      padding: 10px;
+    }
+    select {
+      font-size: 16px;
+      padding: 5px;
+      margin: 10px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tradutor Multilíngue</h1>
+  
+  <select id="idioma-origem">
+    <option value="pt">Português</option>
+    <option value="en">Inglês</option>
+    <option value="de">Alemão</option>
+    <option value="es">Espanhol</option>
+    <option value="fr">Francês</option>
+  </select>
+  
+  <textarea id="texto-original" placeholder="Digite o texto"></textarea>
+  
+  <select id="idioma-destino">
+    <option value="pt">Português</option>
+    <option value="en">Inglês</option>
+    <option value="de">Alemão</option>
+    <option value="es">Espanhol</option>
+    <option value="fr">Francês</option>
+  </select>
+  
+  <button onclick="traduzir()">Traduzir</button>
+  
+  <div id="resultado"></div>
+  
+  <script>
+    function traduzir() {
+      var textoOriginal = document.getElementById("texto-original").value;
+      var idiomaOrigem = document.getElementById("idioma-origem").value;
+      var idiomaDestino = document.getElementById("idioma-destino").value;
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + idiomaOrigem + "&tl=" + idiomaDestino + "&dt=t&q=" + encodeURIComponent(textoOriginal), true);
+      
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var traducao = JSON.parse(xhr.responseText)[0][0][0];
+          document.getElementById("resultado").textContent = "Tradução: " + traducao;
+        }
+      };
+      
+      xhr.send();
+    }
+  </script>
+</body>
+</html>

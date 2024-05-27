@@ -1,0 +1,13 @@
+
+Nome do Artista <h1>
+
+Foto dele ou do album / disco < img src=
+
+minimo 3 linhas
+
+<text>
+
+linha reta <hr>
+
+EE aparecida Rahal / Assinatura
+<bottom> rodapé

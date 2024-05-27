@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Tradutor da Vih</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+  body {
+    background-color: #e7e3e3bf; /* Azul bebê */
+    color: white; /* Cor do texto para contrastar com o fundo azul */
+  }
+  #outputText {
+    color: #aec6cf; /* Azul bebê */
+    color: black;   
+  }
+  h1{
+    color: black;
+    font-family:'Times New Roman', Times, serif:;
+    text-align:center;
+
+  }
+
+  textarea{
+    text-align:center;
+    align-content: center;
+    padding: 10px;
+    
+
+  }
+
+  p{
+    color: black;
+  }
+</style>
+</head>
+<body>
+<h1>Tradutor da Vih</h1>
+<textarea id="inputText" rows="8" cols="57"></textarea>
+<button onclick="translateText()">Traduzir</button>
+<p>Tradução:</p>
+<p id="outputText"></p>
+
+<script>
+function translateText() {
+  const text = document.getElementById("inputText").value;
+  const url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=es&dt=t&q=" + encodeURI(text);
+
+  $.ajax({
+    url: url,
+    success: function(result) {
+      const translatedText = result[0][0][0];
+      document.getElementById("outputText").innerText = translatedText;
+    }
+  });
+}
+</script>
+</body>
+</html>

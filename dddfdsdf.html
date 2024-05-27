@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Tradutor</title>
+</head>
+<body>
+    <input type="text" id="textoOriginal" placeholder="Digite seu texto aqui">
+    <button onclick="traduzir()">Traduzir</button>
+    <input type="text" id="textoTraduzido" placeholder="Texto traduzido aparecerá aqui">
+
+    <script>
+        // Mapeamento de palavras-chave e suas traduções
+        const palavrasChave = {
+            "hello": "olá",
+            "world": "mundo",
+            // Adicione mais palavras-chave e traduções conforme necessário
+        };
+
+        // Função para traduzir o texto
+        function traduzir() {
+            const textoOriginal = document.getElementById("textoOriginal").value.toLowerCase();
+            const palavras = textoOriginal.split(" ");
+            let textoTraduzido = "";
+
+            palavras.forEach(palavra => {
+                if (palavrasChave[palavra]) {
+                    textoTraduzido += palavrasChave[palavra] + " ";
+                } else {
+                    textoTraduzido += palavra + " ";
+                }
+            });
+
+            document.getElementById("textoTraduzido").value = textoTraduzido.trim();
+        }
+    </script>
+</body>
+</html>
